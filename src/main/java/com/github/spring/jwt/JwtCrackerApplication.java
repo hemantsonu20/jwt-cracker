@@ -16,6 +16,7 @@
  */
 package com.github.spring.jwt;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -27,6 +28,9 @@ import com.beust.jcommander.Parameter;
 @SpringBootApplication
 public class JwtCrackerApplication implements CommandLineRunner {
 
+    @Autowired
+    private JwtCrackerService crackerService;
+    
     @Override
     public void run(String... args) throws Exception {
 
@@ -34,7 +38,13 @@ public class JwtCrackerApplication implements CommandLineRunner {
         
         CommandLineOptions options = new CommandLineOptions();
         
-        new JCommander(options , args);
+       // new JCommander(options , args);
+        
+        System.out.println(options.token());
+        System.out.println(options.maxThread());
+        
+        crackerService.crackJwt(options);
+        
     }
     
     public static void main(String[] args) {
@@ -48,7 +58,10 @@ public class JwtCrackerApplication implements CommandLineRunner {
         private String token;
         
         @Parameter(names = {"-m", "--max-thread"}, description = "max no of threads to be used, default is 20")
-        private int maxThread = 20;
+        private int maxThread = 5;
+        
+        @Parameter(names = {"-k", "--key-length"}, description = "max possible length of the jwt secret key")
+        private int keyLength = 5;
         
         public String token() {
             return token;
@@ -56,6 +69,10 @@ public class JwtCrackerApplication implements CommandLineRunner {
         
         public int maxThread() {
             return maxThread;
+        }
+        
+        public int keyLength() {
+            return keyLength;
         }
     }
 }
