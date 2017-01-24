@@ -69,8 +69,6 @@ public class ThreadService {
             }
         }
 
-        System.out.println("size: " + tasks.size());
-
         ExecutorService executorService = Executors.newFixedThreadPool(options.maxThread());
 
         StopWatch watch = new StopWatch();
