@@ -21,7 +21,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 
 
@@ -29,22 +28,22 @@ import com.beust.jcommander.Parameter;
 public class JwtCrackerApplication implements CommandLineRunner {
 
     @Autowired
-    private JwtCrackerService crackerService;
+    private ThreadService crackerService;
     
     @Override
     public void run(String... args) throws Exception {
 
-        System.out.println("Hello world");
-        
         CommandLineOptions options = new CommandLineOptions();
         
        // new JCommander(options , args);
         
-        System.out.println(options.token());
-        System.out.println(options.maxThread());
+        System.out.printf(
+                "cracking jwt token [%s] with %d threads upto password length %d%n",
+                options.token(),
+                options.maxThread(),
+                options.maxKeyLength());
         
         crackerService.crackJwt(options);
-        
     }
     
     public static void main(String[] args) {
@@ -58,10 +57,10 @@ public class JwtCrackerApplication implements CommandLineRunner {
         private String token;
         
         @Parameter(names = {"-m", "--max-thread"}, description = "max no of threads to be used, default is 20")
-        private int maxThread = 5;
+        private int maxThread = 20;
         
-        @Parameter(names = {"-k", "--key-length"}, description = "max possible length of the jwt secret key")
-        private int keyLength = 5;
+        @Parameter(names = {"-l", "--max-length"}, description = "max possible length of the jwt secret key")
+        private int maxKeyLength = 5;
         
         public String token() {
             return token;
@@ -71,8 +70,8 @@ public class JwtCrackerApplication implements CommandLineRunner {
             return maxThread;
         }
         
-        public int keyLength() {
-            return keyLength;
+        public int maxKeyLength() {
+            return maxKeyLength;
         }
     }
 }

@@ -26,30 +26,54 @@ public class Task implements Callable<String> {
 
     private char[] buffer;
     private int startIndex;
-    private int keyLength;
+    private int maxKeyLength;
 
     public Task(char[] buffer, int startIndex, int keyLength) {
 
         this.buffer = buffer;
         this.startIndex = startIndex;
-        this.keyLength = keyLength;
+        this.maxKeyLength = keyLength;
     }
 
     @Override
     public String call() throws Exception {
 
-        generate("" + buffer[startIndex], keyLength - 1);
+        for (int i = 1; i <= maxKeyLength; i++) {
+
+            String secretKey = generate(Character.toString(buffer[startIndex]), i - 1);
+            if (null != secretKey) {
+
+                System.out.println("returned " + secretKey);
+                return secretKey;
+            }
+        }
+        throw new IllegalArgumentException("password not found starting with char " + buffer[startIndex]);
+    }
+
+    public String generate(String current, int length) {
+
+        if (length == 0) {
+
+            //System.out.println("generated " + current);
+            return processPassword(current);
+        }
+        for (int i = 0; i < buffer.length; i++) {
+            
+            String tmp = generate(current + buffer[i], length - 1);
+            if (null != tmp) {
+                return tmp;
+            }
+        }
         return null;
     }
 
-    public void generate(String current, int length) {
+    private String processPassword(String current) {
 
-        if (length == 0) {
-            System.out.printf("%d: %s\n", current);
-            return;
+        if ("ab".equals(current)) {
+            
+            System.out.printf("found: %s%n", current);
+            return current;
         }
-        for (int i = 0; i < buffer.length; i++) {
-            generate(current + buffer[i], length - 1);
-        }
+        return null;
     }
 }
