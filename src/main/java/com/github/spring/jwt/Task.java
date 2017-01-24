@@ -31,9 +31,8 @@ public class Task implements Callable<String> {
     // buffer[startIndex], For each thread it will be unique
     private final int startIndex;
 
-    // maximum length key to be generated, for example if its value is 5, then 1
-    // to 5 length keys will be generated
-    private final int maxKeyLength;
+    // length of the key to be generated
+    private final int keyLength;
 
     // service which checks whether generated key is actual secret key or not
     private final JwtService service;
@@ -42,20 +41,17 @@ public class Task implements Callable<String> {
 
         this.buffer = buffer;
         this.startIndex = startIndex;
-        this.maxKeyLength = keyLength;
+        this.keyLength = keyLength;
         this.service = service;
     }
 
     @Override
     public String call() throws Exception {
 
-        // loop for generating keys of length 1 upto maxKeyLength
-        for (int i = 1; i <= maxKeyLength; i++) {
-
-            String secretKey = generate(Character.toString(buffer[startIndex]), i - 1);
-            if (null != secretKey) {
-                return secretKey;
-            }
+        // keyLength - 1, because one initial character is already taken
+        String secretKey = generate(Character.toString(buffer[startIndex]), keyLength - 1);
+        if (null != secretKey) {
+            return secretKey;
         }
         // throw exception if unsuccessful
         throw new IllegalArgumentException("password not found starting with char " + buffer[startIndex]);

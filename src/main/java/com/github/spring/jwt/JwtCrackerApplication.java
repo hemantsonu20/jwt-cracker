@@ -58,7 +58,7 @@ public class JwtCrackerApplication implements CommandLineRunner {
         private int maxThread = ThreadService.CHAR_ARRAY.length;
 
         @Parameter(names = { "-l", "--max-length" }, description = "max possible length of the jwt secret key, upto this length key will be generated")
-        private int maxKeyLength = 5;
+        private int maxKeyLength = 10;
 
         public String token() {
 
