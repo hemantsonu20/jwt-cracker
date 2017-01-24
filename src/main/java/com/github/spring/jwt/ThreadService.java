@@ -48,11 +48,13 @@ public class ThreadService {
 
     public void crackJwt(CommandLineOptions options) {
 
+        JwtService jwtService = new JwtService(options.token());
+        
         List<Task> tasks = new ArrayList<>(CHAR_ARRAY.length);
 
         for (int i = 0; i < CHAR_ARRAY.length; i++) {
 
-            tasks.add(new Task(CHAR_ARRAY, i, options.maxKeyLength()));
+            tasks.add(new Task(CHAR_ARRAY, i, options.maxKeyLength(), jwtService));
         }
 
         ExecutorService executorService = Executors.newFixedThreadPool(options.maxThread());
@@ -78,7 +80,6 @@ public class ThreadService {
             watch.stop();
             executorService.shutdownNow();
         }
-
         System.out.printf("total time taken [hh::mm:ss:SSS] %s%n", watch);
     }
 

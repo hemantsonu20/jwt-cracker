@@ -21,6 +21,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 
 
@@ -35,7 +36,7 @@ public class JwtCrackerApplication implements CommandLineRunner {
 
         CommandLineOptions options = new CommandLineOptions();
         
-       // new JCommander(options , args);
+       new JCommander(options , args);
         
         System.out.printf(
                 "cracking jwt token [%s] with %d threads upto password length %d%n",

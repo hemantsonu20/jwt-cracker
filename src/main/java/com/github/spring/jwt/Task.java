@@ -24,15 +24,17 @@ import java.util.concurrent.Callable;
  */
 public class Task implements Callable<String> {
 
-    private char[] buffer;
-    private int startIndex;
-    private int maxKeyLength;
+    private final char[] buffer;
+    private final int startIndex;
+    private final int maxKeyLength;
+    private final JwtService service;
 
-    public Task(char[] buffer, int startIndex, int keyLength) {
+    public Task(char[] buffer, int startIndex, int keyLength, JwtService service) {
 
         this.buffer = buffer;
         this.startIndex = startIndex;
         this.maxKeyLength = keyLength;
+        this.service = service;
     }
 
     @Override
@@ -69,7 +71,7 @@ public class Task implements Callable<String> {
 
     private String processPassword(String current) {
 
-        if ("ab".equals(current)) {
+        if (service.isMatched(current)) {
             
             System.out.printf("found: %s%n", current);
             return current;

@@ -58,7 +58,11 @@
 			<artifactId>jcommander</artifactId>
 			<version>${jcommander.version}</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-jwt</artifactId>
+		</dependency>
+	
 	</dependencies>
 
 	<build>
