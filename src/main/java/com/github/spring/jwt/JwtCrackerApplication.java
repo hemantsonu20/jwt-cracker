@@ -24,54 +24,54 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 
-
 @SpringBootApplication
 public class JwtCrackerApplication implements CommandLineRunner {
 
     @Autowired
-    private ThreadService crackerService;
-    
+    private ThreadService threadService;
+
     @Override
     public void run(String... args) throws Exception {
 
         CommandLineOptions options = new CommandLineOptions();
-        
-       new JCommander(options , args);
-        
-        System.out.printf(
-                "cracking jwt token [%s] with %d threads upto password length %d%n",
-                options.token(),
-                options.maxThread(),
-                options.maxKeyLength());
-        
-        crackerService.crackJwt(options);
-    }
-    
-    public static void main(String[] args) {
 
-        SpringApplication.run(JwtCrackerApplication.class, args);
+        new JCommander(options, args);
+
+        System.out.printf("******* cracking jwt token *******%ntoken [%s]%nthreads [%d]%nmax password length [%d]%n",
+                options.token(), options.maxThread(), options.maxKeyLength());
+
+        threadService.crackJwt(options);
     }
-    
+
+    public static void main(String[] args) throws Exception {
+
+        SpringApplication.run(JwtCrackerApplication.class, args).close();
+        System.exit(0);
+    }
+
     static class CommandLineOptions {
-        
-        @Parameter(names = {"-j", "--jwt"}, description = "jwt token to be cracked", required = true)
+
+        @Parameter(names = { "-j", "--jwt" }, description = "jwt token to be cracked", required = true)
         private String token;
-        
-        @Parameter(names = {"-m", "--max-thread"}, description = "max no of threads to be used, default is 20")
-        private int maxThread = 20;
-        
-        @Parameter(names = {"-l", "--max-length"}, description = "max possible length of the jwt secret key")
+
+        @Parameter(names = { "-m", "--max-thread" }, description = "max no of threads to be used, default is 62, one thread for each char in [a-zA-Z0-9]")
+        private int maxThread = ThreadService.CHAR_ARRAY.length;
+
+        @Parameter(names = { "-l", "--max-length" }, description = "max possible length of the jwt secret key, upto this length key will be generated")
         private int maxKeyLength = 5;
-        
+
         public String token() {
+
             return token;
         }
-        
+
         public int maxThread() {
+
             return maxThread;
         }
-        
+
         public int maxKeyLength() {
+
             return maxKeyLength;
         }
     }

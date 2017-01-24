@@ -30,42 +30,48 @@ import org.springframework.stereotype.Service;
 import com.github.spring.jwt.JwtCrackerApplication.CommandLineOptions;
 
 /**
+ * Class is responsible for decoding the jwt token and starting threads
+ * execution to crack the jwt
+ * 
  * @author heman
  *
  */
 @Service
 public class ThreadService {
 
-    //public static final String CHARSET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    public static final String CHARSET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    public static final String CHARSET = "abcdefghijklmnopqrstuABCDEFGHIJKLMNOPQRSTU0123456789vwxyzVWXYZ";
     public static final char[] CHAR_ARRAY = CHARSET.toCharArray();
 
-    // shuffle the charset for better performance
     static {
-
-        shuffle(CHAR_ARRAY);
+        // shuffle the char array for better performance
+        shuffle();
     }
 
+    /**
+     * Method to create threads and assign the task to executors
+     * 
+     * @param options
+     */
     public void crackJwt(CommandLineOptions options) {
 
+        // service to verify the token is cracked or not
         JwtService jwtService = new JwtService(options.token());
-        
+
+        // creating lists of task to be executed
         List<Task> tasks = new ArrayList<>(CHAR_ARRAY.length);
 
         for (int i = 0; i < CHAR_ARRAY.length; i++) {
 
             tasks.add(new Task(CHAR_ARRAY, i, options.maxKeyLength(), jwtService));
         }
-
+        
         ExecutorService executorService = Executors.newFixedThreadPool(options.maxThread());
 
         StopWatch watch = new StopWatch();
         watch.start();
 
         try {
-
-            System.out.printf("password cracked: %s %n", executorService.invokeAny(tasks));
-
+            System.out.printf("password cracked: [%s]%n", executorService.invokeAny(tasks));
         } catch (ExecutionException e) {
 
             System.out.println("Password couldn't be cracked, Possible Reasons");
@@ -83,16 +89,23 @@ public class ThreadService {
         System.out.printf("total time taken [hh::mm:ss:SSS] %s%n", watch);
     }
 
-    private static void shuffle(char[] chars) {
+    /**
+     * Method to shuffle the character array. It doesn't shuffle the last 10
+     * character ("vwxyzVWXYZ") for optimization purpose.
+     * 
+     * @param chars
+     */
+    private static void shuffle() {
 
         Random rnd = ThreadLocalRandom.current();
 
-        for (int i = chars.length - 1; i > 0; i--) {
+        for (int i = CHAR_ARRAY.length - 1 - 10; i > 0; i--) {
 
             int index = rnd.nextInt(i + 1);
-            char tmp = chars[index];
-            chars[index] = chars[i];
-            chars[i] = tmp;
+            char tmp = CHAR_ARRAY[index];
+            CHAR_ARRAY[index] = CHAR_ARRAY[i];
+            CHAR_ARRAY[i] = tmp;
         }
+        System.out.println(new String(CHAR_ARRAY));
     }
 }
