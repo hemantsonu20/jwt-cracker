@@ -91,7 +91,6 @@ public class Task implements Callable<String> {
 
         if (service.isMatched(current)) {
 
-            System.out.printf("found: %s%n", current);
             return current;
         }
         return null;
