@@ -25,3 +25,9 @@ An executable jar is also checked in the repo [jwt-cracker-0.0.1-SNAPSHOT.jar](l
  **Output**<br/>
  password cracked: [power]<br/>
  total time taken [hh::mm:ss:SSS] 0:00:26.349
+ 
+* java -jar target/jwt-cracker-0.0.1-SNAPSHOT.jar -c a-z0-9 -t eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwianRpIjoiN2JiODdjOGItMzJiMS00NTk3LWFlMGYtMmI1MWY3MTQ1YjNlIiwiaWF0IjoxNDg1MzM2NTkzLCJleHAiOjE0ODUzNDAxOTN9.sxua3rDJcSH0cKWu5F6v0Xq__1DZ5HdjcnRfwWqnEpA
+
+ **Output**<br/>
+ password cracked: [new123]<br/>
+ total time taken [hh::mm:ss:SSS] 0:20:52.520
