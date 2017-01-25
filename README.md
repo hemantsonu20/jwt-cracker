@@ -39,6 +39,6 @@ An executable jar is also checked in the repo [jwt-cracker-0.0.1-SNAPSHOT.jar](l
  total time taken [hh::mm:ss:SSS] 0:38:19.124
  
 ## Note
-Its not always beneficial to use more thread for better performance.
-See example 3 (20 thread) and 4 (50 thread). More threads may add overhead of context switch to the system resulting in performance degradation.
-All above tests were executed on my system with Intel i5 @3.20GHz 2 core, 8 GB RAM.
+* Its not always beneficial to use more thread for better performance.
+* See example 3 (20 thread) and 4 (50 thread). More threads may add overhead of context switch to the system resulting in performance degradation.
+* All above tests were executed on my system with Intel i5 @3.20GHz 2 core, 8 GB RAM.
