@@ -3,7 +3,7 @@ A jwt cracker via brute force approach
 
 ## USAGE
 Downlaod the project and run mvn clean package. A jar will be created in your {projectdir}/target directory.
-An executable jar is also checked in the repo [jwt-cracker-0.0.1-SNAPSHOT.jar](lib/jwt-cracker-0.0.1-SNAPSHOT.jar).
+An executable jar is also checked in the repo [jwt-cracker-0.0.1-SNAPSHOT.jar](lib/).
 
 ## Command Line Options
 | Flags                   | Descriptions                                                | Required | Default    |
