@@ -39,8 +39,11 @@ public class JwtCrackerApplication implements CommandLineRunner {
 
         new JCommander(options, args);
 
-        System.out.printf("******* cracking jwt token *******%ntoken [%s]%nthreads [%d]%nmax password length [%d]%n",
-                options.token(), options.maxThread(), options.maxKeyLength());
+        System.out.printf(
+                "token [%s]%nthreads [%d]%nmax password length [%d]%n",
+                options.token(),
+                options.maxThread(),
+                options.maxKeyLength());
 
         threadService.crackJwt(options);
     }
