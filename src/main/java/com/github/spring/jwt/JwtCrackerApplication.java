@@ -16,6 +16,7 @@
  */
 package com.github.spring.jwt;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -23,6 +24,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
+import com.beust.jcommander.ParameterException;
 
 @SpringBootApplication
 public class JwtCrackerApplication implements CommandLineRunner {
@@ -51,14 +53,21 @@ public class JwtCrackerApplication implements CommandLineRunner {
 
     static class CommandLineOptions {
 
-        @Parameter(names = { "-j", "--jwt" }, description = "jwt token to be cracked", required = true)
+        public static final String SMALL_ALPHA = "abcdefghijklmnoprstuqvwxyz";
+        public static final String CAP_ALPHA = "ABCDEFGHIJKLMNOPRSTUQVWXYZ";
+        public static final String NUM = "0123456789";
+        
+        @Parameter(names = { "-t", "--token" }, description = "jwt token to be cracked", required = true)
         private String token;
 
-        @Parameter(names = { "-m", "--max-thread" }, description = "max no of threads to be used, default is 62, one thread for each char in [a-zA-Z0-9]")
-        private int maxThread = ThreadService.CHAR_ARRAY.length;
+        @Parameter(names = { "-m", "--threads" }, description = "max no of threads to be used, default is 20")
+        private int maxThread = 20;
 
-        @Parameter(names = { "-l", "--max-length" }, description = "max possible length of the jwt secret key, upto this length key will be generated")
+        @Parameter(names = { "-l", "--length" }, description = "max possible length of the jwt secret key, upto this length key will be generated")
         private int maxKeyLength = 10;
+        
+        @Parameter(names = { "-c", "--chars" }, description = "charset to be included, combination of a-z, A-Z and 0-9 only, default a-zA-Z0-9")
+        private String charSet = "a-zA-Z0-9";
 
         public String token() {
 
@@ -73,6 +82,32 @@ public class JwtCrackerApplication implements CommandLineRunner {
         public int maxKeyLength() {
 
             return maxKeyLength;
+        }
+        
+        public char[] charSet() {
+         
+            if(StringUtils.isBlank(charSet)) {
+                throw new ParameterException("char set is empty");
+            }
+            
+            String output = "";
+            if(charSet.contains("a-z")) {
+                output += SMALL_ALPHA;
+            }
+            
+            if(charSet.contains("A-Z")) {
+                output += CAP_ALPHA;
+            }
+            
+            if(charSet.contains("0-9")) {
+                output += NUM;
+            }
+            
+            if(StringUtils.isBlank(output)) {
+                throw new ParameterException("charset is invalid");
+            }
+            
+            return output.toCharArray();
         }
     }
 }
