@@ -63,7 +63,7 @@ public class JwtCrackerApplication implements CommandLineRunner {
         @Parameter(names = { "-t", "--token" }, description = "jwt token to be cracked", required = true)
         private String token;
 
-        @Parameter(names = { "-m", "--threads" }, description = "max no of threads to be used, default is 20")
+        @Parameter(names = { "-mt", "--max-threads" }, description = "max no of threads to be used, default is 20")
         private int maxThread = 20;
 
         @Parameter(names = { "-l", "--length" }, description = "max possible length of the jwt secret key, upto this length key will be generated")
