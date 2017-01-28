@@ -7,4 +7,6 @@ notifications:
   email
     - hemantsonu20@gmail.com
 addons:
-  sonarqube: true
+  sonarqube:
+    token:
+      secure: $SONAR_TOKEN
