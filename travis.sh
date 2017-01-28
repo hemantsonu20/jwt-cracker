@@ -27,6 +27,6 @@ elif [ "$TRAVIS_PULL_REQUEST" != "false" ] && [ -n "${GITHUB_TOKEN:-}" ]; then
         -Dsonar.github.oauth=$GITHUB_TOKEN \
 
 else
-    echo 'Feature branch or external pull request run install only'
+    echo 'push on other branches'
     mvn install $MAVEN_OPTIONS -Dsource.skip=true
 fi
