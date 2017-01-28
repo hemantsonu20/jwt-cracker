@@ -28,7 +28,7 @@ import com.beust.jcommander.JCommander;
  * @author heman
  *
  */
-public class TestThreadService {
+public class ThreadServiceTest {
 
     private static final String TOKEN_1 = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsImp0aSI6IjNkZWIyZmEzLWU2MWMtNDZkMC05M2IxLWFlYTU2ZWQ3ZTZiYSIsImlhdCI6MTQ4NTU4Nzg5OCwiZXhwIjoxNDg1NTkxNDk4fQ._0IPrjaIaFG6uga1t0YuEvhx37L5gPz7YPL8JGwHi0o";
     private static final String SECRET_1 = "any";
