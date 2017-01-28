@@ -16,7 +16,7 @@
  */
 package com.github.spring.jwt;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.util.concurrent.ExecutionException;
 
@@ -33,7 +33,7 @@ public class ThreadServiceTest {
     private static final String TOKEN_1 = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsImp0aSI6IjNkZWIyZmEzLWU2MWMtNDZkMC05M2IxLWFlYTU2ZWQ3ZTZiYSIsImlhdCI6MTQ4NTU4Nzg5OCwiZXhwIjoxNDg1NTkxNDk4fQ._0IPrjaIaFG6uga1t0YuEvhx37L5gPz7YPL8JGwHi0o";
     private static final String SECRET_1 = "any";
 
-    private static final String TOKEN_2 = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsImp0aSI6IjE5YTNkOWY1LTVlNTYtNDViNS04MDdhLWRlZWNkMGI1YTlhOSIsImlhdCI6MTQ4NTU4ODE0OSwiZXhwIjoxNDg1NTkxNzQ5fQ.h_6KsKdMUWxzDM2L3gWLcPe8cLqsQrVZpx8Rnf2fyXc";
+    private static final String TOKEN_2 = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsImp0aSI6IjE5YTNkOWY1LTVlNTYtNDViNS04MDdhLWRlZWNkMGI1YTlhOSIsImlhdCI6MTQ4NTU4ODE0OSwiZXhwIjoxNDg1NjE5MDM0fQ.AVc9-DSy-b2-er1rOgEMnvavrtLrbaqIxP6EulfCh_Y";
     private static final String SECRET_2 = "567";
 
     private static final String TOKEN_3 = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsImp0aSI6IjRmMzAwNTE3LThhYTMtNDMzNi05OWU2LWJmZjljNjZiNzMzZCIsImlhdCI6MTQ4NTU4ODIzNiwiZXhwIjoxNDg1NTkxODM2fQ.erPWUD-nVfOmKnpW72f1SWIngParQWGdFb0C-neteIw";
@@ -42,7 +42,7 @@ public class ThreadServiceTest {
     private static final String TOKEN_4 = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsImp0aSI6IjI4NzEzNDQ5LWQ1ZDctNDNmMy04MThmLTJlN2IzYTk5ZWVlOSIsImlhdCI6MTQ4NTU4ODMyMiwiZXhwIjoxNDg1NTkxOTIyfQ.xy_kwzJpIS9wdpoygajZShKYrOAQeUx5EhFGLWkofqs";
     private static final String SECRET_4 = "B4u";
 
-    //@Test
+    @Test
     public void testToken1() throws InterruptedException, ExecutionException {
 
         CommandLineOptions options = new CommandLineOptions();
@@ -50,9 +50,11 @@ public class ThreadServiceTest {
 
         ThreadService service = new ThreadService();
         assertEquals(SECRET_1, service.crackJwt(options));
+        
+        System.out.printf("testcase testToken1 cracked [%s]%n", SECRET_1);
     }
 
-    //@Test
+    @Test
     public void testToken2() throws InterruptedException, ExecutionException {
 
         CommandLineOptions options = new CommandLineOptions();
@@ -60,9 +62,11 @@ public class ThreadServiceTest {
 
         ThreadService service = new ThreadService();
         assertEquals(SECRET_2, service.crackJwt(options));
+        
+        System.out.printf("testcase testToken2 cracked [%s]%n", SECRET_2);
     }
 
-    //@Test
+    @Test
     public void testToken3() throws InterruptedException, ExecutionException {
 
         CommandLineOptions options = new CommandLineOptions();
@@ -70,9 +74,11 @@ public class ThreadServiceTest {
 
         ThreadService service = new ThreadService();
         assertEquals(SECRET_3, service.crackJwt(options));
+        
+        System.out.printf("testcase testToken3 cracked [%s]%n", SECRET_3);
     }
 
-    //@Test
+    @Test
     public void testToken4() throws InterruptedException, ExecutionException {
 
         CommandLineOptions options = new CommandLineOptions();
@@ -80,6 +86,8 @@ public class ThreadServiceTest {
 
         ThreadService service = new ThreadService();
         assertEquals(SECRET_4, service.crackJwt(options));
+        
+        System.out.printf("testcase testToken4 cracked [%s]%n", SECRET_4);
     }
 
     /**
@@ -89,13 +97,22 @@ public class ThreadServiceTest {
      * @throws InterruptedException
      * @throws ExecutionException
      */
-    @Test(expected = ExecutionException.class)
+    @Test
     public void testTokenCrackFailure() throws InterruptedException, ExecutionException {
 
         CommandLineOptions options = new CommandLineOptions();
         new JCommander(options, "-t", TOKEN_4, "-mt", "5", "-l", "3", "-c", "0-9");
 
         ThreadService service = new ThreadService();
+        
+        try {
         service.crackJwt(options);
+        fail("this should not happen");
+        }
+        catch(ExecutionException e) {
+            assertTrue(e.getCause() instanceof IllegalArgumentException);
+        }
+        
+        System.out.println("testcase testTokenCrackFailure passed");
     }
 }

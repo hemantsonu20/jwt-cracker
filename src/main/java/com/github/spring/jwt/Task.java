@@ -49,7 +49,7 @@ public class Task implements Callable<String> {
     public String call() throws Exception {
 
         // keyLength - 1, because one initial character is already taken
-        String secretKey = generate(new StringBuilder(buffer.length).append(buffer[startIndex]), keyLength - 1);
+        String secretKey = generate(Character.toString(buffer[startIndex]), keyLength - 1);
         if (null != secretKey) {
             return secretKey;
         }
@@ -64,15 +64,15 @@ public class Task implements Callable<String> {
      * @param length
      * @return
      */
-    public String generate(StringBuilder current, int length) {
+    public String generate(String current, int length) {
 
         if (length == 0) {
 
-            return processPassword(current.toString());
+            return processPassword(current);
         }
         for (int i = 0; i < buffer.length; i++) {
 
-            String tmp = generate(current.append(buffer[i]), length - 1);
+            String tmp = generate(current + buffer[i], length - 1);
             if (null != tmp) {
                 return tmp;
             }
