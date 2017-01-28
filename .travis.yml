@@ -14,6 +14,9 @@ addons:
   sonarqube:
     token:
       secure: $SONAR_GITHUB_TOKEN
+      
+before_install:
+  - chmod +x ./travis.sh
 #branches:
 #  only:
 #    - master
