@@ -16,7 +16,6 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
 		<commons.lang.version>3.0</commons.lang.version>
-		<testng.version>6.8.5</testng.version>
 		<jcommander.version>1.60</jcommander.version>
 	</properties>
 	<dependencies>

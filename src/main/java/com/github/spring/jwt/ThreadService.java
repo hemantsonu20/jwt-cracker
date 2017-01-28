@@ -22,10 +22,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import org.apache.commons.lang3.time.StopWatch;
 import org.springframework.stereotype.Service;
-
-import com.github.spring.jwt.JwtCrackerApplication.CommandLineOptions;
 
 /**
  * Class is responsible for decoding the jwt token and starting threads
@@ -37,18 +34,17 @@ import com.github.spring.jwt.JwtCrackerApplication.CommandLineOptions;
 @Service
 public class ThreadService {
 
-    
     /**
      * Method to create threads and assign the task to executors
      * 
      * @param options
+     * @throws ExecutionException
+     * @throws InterruptedException
      */
-    public void crackJwt(CommandLineOptions options) {
+    public String crackJwt(CommandLineOptions options) throws InterruptedException, ExecutionException {
 
         char[] charset = options.charSet();
-        
-        System.out.printf("charset used [%s]%n", new String(charset));
-        
+
         // service to verify the token is cracked or not
         JwtService jwtService = new JwtService(options.token());
 
@@ -63,28 +59,12 @@ public class ThreadService {
                 tasks.add(new Task(charset, i, length, jwtService));
             }
         }
-
+     
         ExecutorService executorService = Executors.newFixedThreadPool(options.maxThread());
-
-        StopWatch watch = new StopWatch();
-        watch.start();
-
         try {
-            System.out.printf("password cracked: [%s]%n", executorService.invokeAny(tasks));
-        } catch (ExecutionException e) {
-
-            System.out.println("Password couldn't be cracked, Possible Reasons");
-            System.out.printf("1. It contains characters other than the charset [%s]%n", new String(charset));
-            System.out.printf("2. Its length exceeds the given max key length [%d]%n", options.maxKeyLength());
-        } catch (InterruptedException e) {
-
-            System.out.println("something unexpected happened");
-            e.printStackTrace();
-
+            return executorService.invokeAny(tasks);
         } finally {
-            watch.stop();
             executorService.shutdownNow();
         }
-        System.out.printf("total time taken [hh::mm:ss:SSS] %s%n", watch);
     }
 }

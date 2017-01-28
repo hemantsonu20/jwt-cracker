@@ -14,7 +14,7 @@ An executable jar is also checked in the repo [jwt-cracker-0.0.1-SNAPSHOT.jar](l
 | "-c", "--chars"         | charset to be included combination of a-z, A-Z and 0-9 only | true     | a-zA-Z0-9  |
 
 ## Examples
-1. java -jar jwt-cracker-0.0.1-SNAPSHOT.jar -c a-z -t eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwianRpIjoiZTczMWJhZWYtNzA5MS00YTMxLWJjOWUtOWI5NWY3ZWZkOGY5IiwiaWF0IjoxNDg1MzMwMTk5LCJleHAiOjE0ODUzMzM3OTl9.t-pea7zd3MRfPI2M8hRKFum-4RY0l4xqbCUIyh8kiAc
+1. java -jar target/jwt-cracker-0.0.1-SNAPSHOT.jar -c a-z -t eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwianRpIjoiZTczMWJhZWYtNzA5MS00YTMxLWJjOWUtOWI5NWY3ZWZkOGY5IiwiaWF0IjoxNDg1MzMwMTk5LCJleHAiOjE0ODUzMzM3OTl9.t-pea7zd3MRfPI2M8hRKFum-4RY0l4xqbCUIyh8kiAc
  
  **Output**<br/>
  password cracked: [powers]<br/>
