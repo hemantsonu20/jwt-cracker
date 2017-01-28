@@ -12,6 +12,6 @@ addons:
   sonarqube:
     token:
       secure: $SONAR_TOKEN
-branches:
-  only:
-    - master
+#branches:
+#  only:
+#    - master
