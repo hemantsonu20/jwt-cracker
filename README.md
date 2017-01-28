@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/hemantsonu20/jwt-cracker.svg?branch=master)](https://travis-ci.org/hemantsonu20/jwt-cracker)
+
 # jwt-cracker
 A jwt cracker via brute force approach
 
