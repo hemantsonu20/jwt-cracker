@@ -30,7 +30,7 @@ public final class JwtElement {
         this.headers = headers;
         this.claims = claims;
         this.crypto = crypto;
-        this.signingInput = concat(b64UrlEncode(headers), utf8Encode("."), b64UrlEncode(claims));
+        this.signingInput = concat(b64UrlEncode(headers()), utf8Encode("."), b64UrlEncode(claims()));
     }
 
     public byte[] headers() {
