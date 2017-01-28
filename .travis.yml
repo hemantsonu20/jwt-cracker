@@ -13,7 +13,7 @@ notifications:
 addons:
   sonarqube:
     token:
-      secure: $SONAR_TOKEN
+      secure: $SONAR_GITHUB_TOKEN
       
 before_install:
   - chmod +x ./travis.sh
