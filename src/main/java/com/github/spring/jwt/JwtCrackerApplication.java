@@ -55,8 +55,8 @@ public class JwtCrackerApplication implements CommandLineRunner {
         catch (ExecutionException e) {
 
             System.out.println("Password couldn't be cracked, Possible Reasons");
-            System.out.printf("1. It contains characters other than the given charset");
-            System.out.printf("2. Its length exceeds the given max key length");
+            System.out.println("1. It contains characters other than the given charset");
+            System.out.println("2. Its length exceeds the given max key length");
         }
         catch(Exception e) {
             System.out.println("something unexpected happened");
