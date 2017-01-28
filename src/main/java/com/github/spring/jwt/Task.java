@@ -68,7 +68,6 @@ public class Task implements Callable<String> {
 
         if (length == 0) {
 
-            // System.out.println("generated " + current);
             return processPassword(current.toString());
         }
         for (int i = 0; i < buffer.length; i++) {

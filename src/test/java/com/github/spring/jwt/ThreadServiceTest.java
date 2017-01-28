@@ -42,7 +42,7 @@ public class ThreadServiceTest {
     private static final String TOKEN_4 = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsImp0aSI6IjI4NzEzNDQ5LWQ1ZDctNDNmMy04MThmLTJlN2IzYTk5ZWVlOSIsImlhdCI6MTQ4NTU4ODMyMiwiZXhwIjoxNDg1NTkxOTIyfQ.xy_kwzJpIS9wdpoygajZShKYrOAQeUx5EhFGLWkofqs";
     private static final String SECRET_4 = "B4u";
 
-    @Test
+    //@Test
     public void testToken1() throws InterruptedException, ExecutionException {
 
         CommandLineOptions options = new CommandLineOptions();
@@ -52,7 +52,7 @@ public class ThreadServiceTest {
         assertEquals(SECRET_1, service.crackJwt(options));
     }
 
-    @Test
+    //@Test
     public void testToken2() throws InterruptedException, ExecutionException {
 
         CommandLineOptions options = new CommandLineOptions();
@@ -62,7 +62,7 @@ public class ThreadServiceTest {
         assertEquals(SECRET_2, service.crackJwt(options));
     }
 
-    @Test
+    //@Test
     public void testToken3() throws InterruptedException, ExecutionException {
 
         CommandLineOptions options = new CommandLineOptions();
@@ -72,7 +72,7 @@ public class ThreadServiceTest {
         assertEquals(SECRET_3, service.crackJwt(options));
     }
 
-    @Test
+    //@Test
     public void testToken4() throws InterruptedException, ExecutionException {
 
         CommandLineOptions options = new CommandLineOptions();
