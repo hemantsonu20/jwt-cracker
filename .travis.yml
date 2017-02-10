@@ -13,7 +13,7 @@ script:
 deploy:
   provider: releases
   api_key: $GITHUB_TOKEN
-  file: target/*.jar
+  file: target/jwt-cracker-0.0.1-SNAPSHOT.jar
   skip_cleanup: true
   on:
     branch: master
