@@ -9,6 +9,8 @@ import java.util.Map;
 
 import javax.crypto.spec.SecretKeySpec;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.jwt.crypto.sign.InvalidSignatureException;
 import org.springframework.security.jwt.crypto.sign.MacSigner;
 
@@ -16,6 +18,8 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JwtService {
+    
+    private static final Logger LOG = LoggerFactory.getLogger(CommandLineOptions.class);
 
     // mapping of algorithm from jwt header to actual algoritm
     private static final Map<String, String> ALGO_MAP = new HashMap<>();
@@ -54,9 +58,10 @@ public class JwtService {
             signer.verify(jwtElement.signingInput(), jwtElement.crypto());
             return true;
         } catch (InvalidSignatureException e) {
+            LOG.trace("secretKey did'nt match", e);
             return false;
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.warn("something unexpected happened", e);
             return false;
         }
     }

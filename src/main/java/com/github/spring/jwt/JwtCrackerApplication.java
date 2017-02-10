@@ -19,6 +19,8 @@ package com.github.spring.jwt;
 import java.util.concurrent.ExecutionException;
 
 import org.apache.commons.lang3.time.StopWatch;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -28,6 +30,8 @@ import com.beust.jcommander.JCommander;
 
 @SpringBootApplication
 public class JwtCrackerApplication implements CommandLineRunner {
+
+    private static final Logger LOG = LoggerFactory.getLogger(CommandLineOptions.class);
 
     @Autowired
     private ThreadService threadService;
@@ -40,32 +44,27 @@ public class JwtCrackerApplication implements CommandLineRunner {
         // parsing command line
         new JCommander(options, args);
 
-        System.out.printf(
-                "token [%s]%ncharset [%s]%nthreads [%d]%nmax password length [%d]%n",
-                options.token(),
-                new String(options.charSet()),
-                options.maxThread(),
-                options.maxKeyLength());
+        LOG.info("************************************************");
+        LOG.info("%ncharset [{}]", new String(options.charSet()));
+        LOG.info("threads [{}]", options.maxThread());
+        LOG.info("max password length [{}]", options.maxKeyLength());
 
         StopWatch watch = new StopWatch();
         watch.start();
         try {
-            System.out.printf("password cracked: [%s]%n", threadService.crackJwt(options));
-        }
-        catch (ExecutionException e) {
+            LOG.info("password cracked: [{}]", threadService.crackJwt(options));
+        } catch (ExecutionException e) {
 
-            System.out.println("Password couldn't be cracked, Possible Reasons");
-            System.out.println("1. It contains characters other than the given charset");
-            System.out.println("2. Its length exceeds the given max key length");
-            System.out.printf("3. %s caused by %s%n", e, e.getCause());
-        }
-        catch(Exception e) {
-            System.out.println("something unexpected happened");
-            e.printStackTrace();
-        }
-        finally {
+            LOG.info("Password couldn't be cracked, Possible Reasons");
+            LOG.info("1. It contains characters other than the given charset");
+            LOG.info("2. Its length exceeds the given max key length");
+            LOG.info("3. {} caused by {}", e, e.getCause());
+        } catch (Exception e) {
+            LOG.warn("something unexpected happened", e);
+        } finally {
             watch.stop();
-            System.out.printf("total time taken [hh::mm:ss:SSS] %s%n", watch);
+            LOG.info("total time taken [hh::mm:ss:SSS] %s%n", watch);
+            LOG.info("************************************************");
         }
     }
 
