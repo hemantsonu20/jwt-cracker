@@ -45,7 +45,7 @@ public class JwtCrackerApplication implements CommandLineRunner {
         new JCommander(options, args);
 
         LOG.info("************************************************");
-        LOG.info("%ncharset [{}]", new String(options.charSet()));
+        LOG.info("charset [{}]", new String(options.charSet()));
         LOG.info("threads [{}]", options.maxThread());
         LOG.info("max password length [{}]", options.maxKeyLength());
 
