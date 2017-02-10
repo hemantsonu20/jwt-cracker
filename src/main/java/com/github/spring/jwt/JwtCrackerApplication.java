@@ -45,14 +45,15 @@ public class JwtCrackerApplication implements CommandLineRunner {
         new JCommander(options, args);
 
         LOG.info("************************************************");
-        LOG.info("charset [{}]", new String(options.charSet()));
+        LOG.info("charset [{}]", String.valueOf(options.charSet()));
         LOG.info("threads [{}]", options.maxThread());
         LOG.info("max password length [{}]", options.maxKeyLength());
 
         StopWatch watch = new StopWatch();
         watch.start();
         try {
-            LOG.info("password cracked: [{}]", threadService.crackJwt(options));
+            String password = threadService.crackJwt(options);
+            LOG.info("password cracked: [{}]", password);
         } catch (ExecutionException e) {
 
             LOG.info("Password couldn't be cracked, Possible Reasons");
