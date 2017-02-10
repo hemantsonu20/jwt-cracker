@@ -107,6 +107,7 @@ public class JwtService {
             return ALGO_MAP.get(map.get("alg"));
 
         } catch (IOException e) {
+            LOG.warn("deserialization failed", e);
             return ALGO_MAP.get(null);
         }
     }
