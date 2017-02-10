@@ -16,7 +16,6 @@ deploy:
   file: target/*.jar
   skip_cleanup: true
   on:
-    tags: true
     branch: master
 
 notifications:
@@ -29,6 +28,3 @@ addons:
       
 before_install:
   - chmod +x ./travis.sh
-#branches:
-#  only:
-#    - master
