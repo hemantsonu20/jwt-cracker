@@ -49,4 +49,4 @@ An executable jar is also checked in the repo [jwt-cracker-0.0.1-SNAPSHOT.jar](l
 ## Note
 * Its not always beneficial to use more thread for better performance.
 * See example 3 (20 thread), example 4 (50 thread) and example 5 (4 thread). More threads may add overhead of context switch to the system resulting in performance degradation.
-* All above tests were executed on my system with Intel i5 @3.20GHz 2 physical core, 8 GB RAM.
+* All above tests were executed on my system with Intel i5 @3.20GHz 2 physical core, 8 GB RAM. 
