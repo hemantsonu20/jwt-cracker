@@ -2,7 +2,7 @@
 [![Sonar Status](https://sonarcloud.io/api/project_badges/measure?project=com.github.hemantsonu20%3Ajwt-cracker&metric=alert_status)](https://sonarcloud.io/dashboard?id=com.github.hemantsonu20%3Ajwt-cracker)
 
 # jwt-cracker
-A multi-threaded jwt cracker via brute force approach.
+A multi-threaded JWT cracker via brute force approach.
 
 ## USAGE
 Downlaod the project and run mvn clean package. A jar will be created in your {projectdir}/target directory.
