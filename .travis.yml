@@ -29,10 +29,8 @@ after_deploy:
   # Commit docs folder
   - git config --global user.email "builds@travis-ci.com"
   - git config --global user.name "Travis CI"
-  - find .
-  - pwd
   - git checkout $TRAVIS_BRANCH
-  - git add docs/apidocs/*
+  - git add docs/apidocs/* && git status
   - git commit -m "[skip ci] adding javadocs travis build:$TRAVIS_BUILD_NUMBER"
   - git push https://$GITHUB_TOKEN@github.com/hemantsonu20/jwt-cracker $TRAVIS_BRANCH
 
