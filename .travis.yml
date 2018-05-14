@@ -22,7 +22,7 @@ before_deploy:
   # Commit docs folder
   - git add docs/apidocs/*
   - git commit -m "[skip ci] adding javadocs travis build:$TRAVIS_BUILD_NUMBER"
-  - git push --repo=https://$GITHUB_TOKEN@github.com/hemantsonu20/jwt-cracker origin $TRAVIS_BRANCH
+  - git push https://$GITHUB_TOKEN@github.com/hemantsonu20/jwt-cracker $TRAVIS_BRANCH
 
 deploy:
   provider: releases
