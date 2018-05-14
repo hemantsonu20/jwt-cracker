@@ -8,9 +8,6 @@ branches:
   
 script:
   - ./travis.sh
-#  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install 
-#  - mvn sonar:sonar
-#  - mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar
 
 before_deploy:
   - git config --global user.email "builds@travis-ci.com"
@@ -18,11 +15,6 @@ before_deploy:
   - export GIT_TAG=$TRAVIS_BRANCH-v0.1.$TRAVIS_BUILD_NUMBER
   - git tag $GIT_TAG -a -m "Generated tag from TravisCI for build $TRAVIS_BUILD_NUMBER"
   - git push https://$GITHUB_TOKEN@github.com/hemantsonu20/jwt-cracker --tags
-  
-  # Commit docs folder
-  - git add docs/apidocs/*
-  - git commit -m "[skip ci] adding javadocs travis build:$TRAVIS_BUILD_NUMBER"
-  - git push https://$GITHUB_TOKEN@github.com/hemantsonu20/jwt-cracker $TRAVIS_BRANCH
 
 deploy:
   provider: releases
@@ -32,6 +24,17 @@ deploy:
   on:
     tags: false
     branch: master
+    
+after_deploy:
+  # Commit docs folder
+  - git config --global user.email "builds@travis-ci.com"
+  - git config --global user.name "Travis CI"
+  - find .
+  - pwd
+  - git checkout $TRAVIS_BRANCH
+  - git add docs/apidocs/*
+  - git commit -m "[skip ci] adding javadocs travis build:$TRAVIS_BUILD_NUMBER"
+  - git push https://$GITHUB_TOKEN@github.com/hemantsonu20/jwt-cracker $TRAVIS_BRANCH
 
 notifications:
   email
