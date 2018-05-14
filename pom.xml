@@ -7,6 +7,10 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
   <url>https://github.com/hemantsonu20/jwt-cracker</url>
+  <organization>
+    <name>hemantsonu20 @ Github</name>
+    <url>https://github.com/hemantsonu20</url>
+  </organization>
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
