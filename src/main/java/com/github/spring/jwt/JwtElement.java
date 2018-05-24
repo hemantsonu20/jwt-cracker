@@ -7,7 +7,7 @@ import static org.springframework.security.jwt.codec.Codecs.utf8Encode;
 /**
  * A class representing the different fields of a jwt token
  * 
- * @author hemant
+ * @author pratapi.patel
  *
  */
 public final class JwtElement {

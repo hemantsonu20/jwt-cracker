@@ -9,18 +9,20 @@
 # jwt-cracker
 A multi-threaded JWT cracker via brute force approach.
 
+## JAVA-DOCS
+Java-docs for this project is checked in [docs](/docs) folder. After every successful commit, it is automatically updated via CI.  Here is the [link](https://hemantsonu20.github.io/jwt-cracker/apidocs/).  
+
 ## USAGE
-Downlaod the project and run mvn clean package. A jar will be created in your {projectdir}/target directory.
-An executable jar is also checked in the repo [jwt-cracker-0.0.1-SNAPSHOT.jar](lib/).
-Or you can get updated jar from the releases section.
+Downlaod the project and run mvn clean package. A jar will be created in your {projectdir}/target directory.  
+Or you can get updated jar from the [releases](https://github.com/hemantsonu20/jwt-cracker/releases) section.  
 
 ## Command Line Options
 | Flags                   | Descriptions                                                | Required | Default    |
-| ---------------------   |-------------                                                | -----    | --------   |               
-| "-t", "--token"         | jwt token to be cracked                                     | true     | No Default |
-| "-mt", "--max-threads"  | max no of threads to be used                                | false    | 20         |
-| "-l", "--length"        | max possible length of the jwt secret key                   | true     | 10         |
-| "-c", "--chars"         | charset to be included combination of a-z, A-Z and 0-9 only | true     | a-zA-Z0-9  |
+| ---------------------   |-------------                                                | -----    | --------   |  
+| "-t", "--token"         | jwt token to be cracked                                     | true     | No Default |  
+| "-mt", "--max-threads"  | max no of threads to be used                                | false    | 20         |  
+| "-l", "--length"        | max possible length of the jwt secret key                   | true     | 10         |  
+| "-c", "--chars"         | charset to be included combination of a-z, A-Z and 0-9 only | true     | a-zA-Z0-9  |  
 
 ## Examples
 1. java -jar target/jwt-cracker-0.0.1-SNAPSHOT.jar -c a-z -t eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwianRpIjoiZTczMWJhZWYtNzA5MS00YTMxLWJjOWUtOWI5NWY3ZWZkOGY5IiwiaWF0IjoxNDg1MzMwMTk5LCJleHAiOjE0ODUzMzM3OTl9.t-pea7zd3MRfPI2M8hRKFum-4RY0l4xqbCUIyh8kiAc

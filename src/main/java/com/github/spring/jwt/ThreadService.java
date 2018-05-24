@@ -28,7 +28,7 @@ import org.springframework.stereotype.Service;
  * Class is responsible for decoding the jwt token and starting threads
  * execution to crack the jwt
  * 
- * @author heman
+ * @author pratapi.patel
  *
  */
 @Service

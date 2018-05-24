@@ -28,6 +28,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.beust.jcommander.JCommander;
 
+/**
+ * 
+ * Main Class to run this program, parses command line options
+ * 
+ * @author pratapi.patel
+ *
+ */
 @SpringBootApplication
 public class JwtCrackerApplication implements CommandLineRunner {
 

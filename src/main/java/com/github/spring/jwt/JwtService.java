@@ -17,6 +17,12 @@ import org.springframework.security.jwt.crypto.sign.MacSigner;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * Class which cracks JWT token against a given secret(randomly generated) key
+ * 
+ * @author pratapi.patel
+ *
+ */
 public class JwtService {
     
     private static final Logger LOG = LoggerFactory.getLogger(CommandLineOptions.class);
