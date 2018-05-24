@@ -22,7 +22,10 @@ import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
 
 /**
- * @author heman
+ * 
+ * Command line options available for this program
+ * 
+ * @author pratapi.patel
  *
  */
 class CommandLineOptions {

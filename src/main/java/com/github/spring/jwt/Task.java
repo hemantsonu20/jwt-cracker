@@ -19,7 +19,11 @@ package com.github.spring.jwt;
 import java.util.concurrent.Callable;
 
 /**
- * @author heman
+ * 
+ * Each jwt crack against a generated secret key is executed in separate thread.
+ * This class represent a thread task.
+ * 
+ * @author pratapi.patel
  *
  */
 public class Task implements Callable<String> {
@@ -58,11 +62,12 @@ public class Task implements Callable<String> {
     }
 
     /**
-     * Method to generate keys of the given length
+     * Method to generate keys of the given length, and tries to crack with 
+     * generated key
      * 
      * @param current
      * @param length
-     * @return
+     * @return key if match is found otherwise null
      */
     public String generate(String current, int length) {
 
@@ -84,7 +89,7 @@ public class Task implements Callable<String> {
      * Method to check generated key is actual secret key or not
      * 
      * @param current
-     * @return
+     * @return current if key is cracked, null otherwise
      */
     private String processPassword(String current) {
 

@@ -17,6 +17,12 @@ import org.springframework.security.jwt.crypto.sign.MacSigner;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * Class which cracks JWT token against a given secret(randomly generated) key
+ * 
+ * @author pratapi.patel
+ *
+ */
 public class JwtService {
     
     private static final Logger LOG = LoggerFactory.getLogger(CommandLineOptions.class);
@@ -25,7 +31,7 @@ public class JwtService {
     private static final Map<String, String> ALGO_MAP = new HashMap<>();
     static {
 
-        // key part is present in jwt header, value part is used to sign the
+        // key part is present in jwt header, valuel part is used to sign the
         // content.
         ALGO_MAP.put("HS256", "HMACSHA256");
         ALGO_MAP.put("HS384", "HMACSHA384");
@@ -49,7 +55,7 @@ public class JwtService {
      * verifies with the existing signature.
      * 
      * @param secretKey
-     * @return
+     * @return true if token cracked, false otherwise
      */
     public boolean isMatched(String secretKey) {
 
