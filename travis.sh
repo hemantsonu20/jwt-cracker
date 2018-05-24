@@ -22,9 +22,9 @@ elif [ "$TRAVIS_PULL_REQUEST" != "false" ] && [ -n "${GITHUB_TOKEN:-}" ]; then
         $MAVEN_OPTIONS \
         -Dsource.skip=true \
         -Dsonar.analysis.mode=preview \
-        -Dsonar.github.pullRequest=$TRAVIS_PULL_REQUEST \
-        -Dsonar.github.repository=$TRAVIS_REPO_SLUG \
-        -Dsonar.github.oauth=$GITHUB_TOKEN \
+        -Dsonar.pullrequest.key=$TRAVIS_PULL_REQUEST \
+        -Dsonar.pullrequest.github.repository=$TRAVIS_REPO_SLUG \
+        -Dsonar.pullrequest.github.token.secured=$GITHUB_TOKEN \
 
 else
     echo 'push on other branches'
