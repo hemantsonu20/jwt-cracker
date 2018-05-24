@@ -1,5 +1,10 @@
 [![Build Status](https://travis-ci.org/hemantsonu20/jwt-cracker.svg?branch=master)](https://travis-ci.org/hemantsonu20/jwt-cracker)
-[![Sonar Status](https://sonarcloud.io/api/project_badges/measure?project=com.github.hemantsonu20%3Ajwt-cracker&metric=alert_status)](https://sonarcloud.io/dashboard?id=com.github.hemantsonu20%3Ajwt-cracker)
+[![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=com.github.hemantsonu20%3Ajwt-cracker&metric=alert_status)](https://sonarcloud.io/dashboard?id=com.github.hemantsonu20%3Ajwt-cracker)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=com.github.hemantsonu20%3Ajwt-cracker&metric=coverage)](https://sonarcloud.io/dashboard?id=com.github.hemantsonu20%3Ajwt-cracker)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=com.github.hemantsonu20%3Ajwt-cracker&metric=bugs)](https://sonarcloud.io/dashboard?id=com.github.hemantsonu20%3Ajwt-cracker)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=com.github.hemantsonu20%3Ajwt-cracker&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=com.github.hemantsonu20%3Ajwt-cracker)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=com.github.hemantsonu20%3Ajwt-cracker&metric=code_smells)](https://sonarcloud.io/dashboard?id=com.github.hemantsonu20%3Ajwt-cracker)
+[![Line Of Code](https://sonarcloud.io/api/project_badges/measure?project=com.github.hemantsonu20%3Ajwt-cracker&metric=ncloc)](https://sonarcloud.io/dashboard?id=com.github.hemantsonu20%3Ajwt-cracker)
 
 # jwt-cracker
 A multi-threaded JWT cracker via brute force approach.
