@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/hemantsonu20/jwt-cracker.svg?branch=master)](https://travis-ci.org/hemantsonu20/jwt-cracker)
+[![Build Status](https://travis-ci.com/hemantsonu20/jwt-cracker.svg?branch=master)](https://travis-ci.com/hemantsonu20/jwt-cracker)
 [![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=com.github.hemantsonu20%3Ajwt-cracker&metric=alert_status)](https://sonarcloud.io/dashboard?id=com.github.hemantsonu20%3Ajwt-cracker)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=com.github.hemantsonu20%3Ajwt-cracker&metric=coverage)](https://sonarcloud.io/dashboard?id=com.github.hemantsonu20%3Ajwt-cracker)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=com.github.hemantsonu20%3Ajwt-cracker&metric=bugs)](https://sonarcloud.io/dashboard?id=com.github.hemantsonu20%3Ajwt-cracker)
