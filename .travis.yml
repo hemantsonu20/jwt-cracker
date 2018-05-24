@@ -34,9 +34,6 @@ after_deploy:
   - git commit -m "[skip ci] adding javadocs travis build:$TRAVIS_BUILD_NUMBER"
   - git push https://$GITHUB_TOKEN@github.com/hemantsonu20/jwt-cracker $TRAVIS_BRANCH
 
-notifications:
-  email
-    - hemantsonu20@gmail.com
 addons:
   sonarcloud:
     organization: "hemantsonu20-github"
@@ -51,3 +48,10 @@ cache:
     - '$HOME/.m2/repository'
     - '$HOME/.sonar/cache'
     
+notifications:
+  email:
+    recipients:
+      - hemantsonu20@gmail.com
+    on_success: change
+    on_failure: always
+  
