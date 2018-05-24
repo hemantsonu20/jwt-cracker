@@ -10,7 +10,8 @@
 A multi-threaded JWT cracker via brute force approach.
 
 ## JAVA-DOCS
-Java-docs for this project is checked in [docs](/docs) folder. After every successful commit, it is automatically updated via CI.  Here is the [link](https://hemantsonu20.github.io/jwt-cracker/apidocs/).  
+Java-docs for this project is checked in [docs](/docs/apidocs) folder.  
+After every successful commit on master branch, it is automatically updated via CI.  Here is the [link](https://hemantsonu20.github.io/jwt-cracker/apidocs/).  
 
 ## USAGE
 Downlaod the project and run mvn clean package. A jar will be created in your {projectdir}/target directory.  
