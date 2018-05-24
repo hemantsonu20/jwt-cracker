@@ -75,4 +75,8 @@ public class JwtCrackerApplication implements CommandLineRunner {
         SpringApplication.run(JwtCrackerApplication.class, args).close();
         System.exit(0);
     }
+    
+    private void unusedmethod() {
+    	
+    }
 }
