@@ -31,7 +31,7 @@ public class JwtService {
     private static final Map<String, String> ALGO_MAP = new HashMap<>();
     static {
 
-        // key part is present in jwt header, value part is used to sign the
+        // key part is present in jwt header, valuel part is used to sign the
         // content.
         ALGO_MAP.put("HS256", "HMACSHA256");
         ALGO_MAP.put("HS384", "HMACSHA384");
@@ -55,7 +55,7 @@ public class JwtService {
      * verifies with the existing signature.
      * 
      * @param secretKey
-     * @return
+     * @return true if token cracked, false otherwise
      */
     public boolean isMatched(String secretKey) {
 
