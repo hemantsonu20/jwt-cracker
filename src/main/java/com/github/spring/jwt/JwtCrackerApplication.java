@@ -35,7 +35,7 @@ public class JwtCrackerApplication implements CommandLineRunner {
 
     @Autowired
     private ThreadService threadService;
-
+     
     @SuppressWarnings("squid:S2629")
     @Override
     public void run(String... args) throws Exception {
