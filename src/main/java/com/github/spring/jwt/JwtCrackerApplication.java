@@ -76,6 +76,10 @@ public class JwtCrackerApplication implements CommandLineRunner {
             LOG.info("************************************************");
         }
     }
+    
+    private void unused() {
+    	
+    }
 
     public static void main(String[] args) {
 
