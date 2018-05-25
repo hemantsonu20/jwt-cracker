@@ -5,6 +5,7 @@ branches:
   except:
   - "/master-v0\\.1.*/"
 script:
+- chmod +x ./travis.sh
 - "./travis.sh"
 before_deploy:
 - git config --global user.email "builds@travis-ci.com"
@@ -32,8 +33,6 @@ addons:
     organization: hemantsonu20-github
     token:
       secure: "$SONAR_TOKEN"
-before_install:
-- chmod +x ./travis.sh
 cache:
   directories:
   - "$HOME/.m2/repository"
