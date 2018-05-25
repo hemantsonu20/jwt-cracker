@@ -4,9 +4,10 @@ jdk:
 branches:
   except:
   - "/master-v0\\.1.*/"
-before_install:
+install: true
+before_script:
 - chmod +x ./travis.sh
-install:
+script:
 - "./travis.sh"
 before_deploy:
 - git config --global user.email "builds@travis-ci.com"
