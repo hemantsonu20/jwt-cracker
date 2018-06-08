@@ -80,16 +80,11 @@ public class JwtCrackerApplication implements CommandLineRunner {
         
         MyClosable cl = new MyClosable(new ByteArrayOutputStream());
         cl.write("hello");
-        call(cl);
     }
     
-    private void call(MyClosable cl) throws IOException {
+   /* private void call(MyClosable cl) throws IOException {
 		cl.write("");
-	}
-
-	private void unused() {
-    	
-    }
+	}*/
 
     public static void main(String[] args) {
 
