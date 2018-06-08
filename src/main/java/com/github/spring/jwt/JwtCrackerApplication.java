@@ -16,6 +16,8 @@
  */
 package com.github.spring.jwt;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
 import org.apache.commons.lang3.time.StopWatch;
@@ -75,9 +77,17 @@ public class JwtCrackerApplication implements CommandLineRunner {
             LOG.info("total time taken [hh::mm:ss:SSS] {}", watch);
             LOG.info("************************************************");
         }
+        
+        MyClosable cl = new MyClosable(new ByteArrayOutputStream());
+        cl.write("hello");
+        call(cl);
     }
     
-    private void unused() {
+    private void call(MyClosable cl) throws IOException {
+		cl.write("");
+	}
+
+	private void unused() {
     	
     }
 
