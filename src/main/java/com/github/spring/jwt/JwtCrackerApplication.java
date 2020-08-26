@@ -12,7 +12,7 @@
  *   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
- *   
+ *
  */
 package com.github.spring.jwt;
 
@@ -29,9 +29,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.beust.jcommander.JCommander;
 
 /**
- * 
+ *
  * Main Class to run this program, parses command line options
- * 
+ *
  * @author pratapi.patel
  *
  */
@@ -42,7 +42,7 @@ public class JwtCrackerApplication implements CommandLineRunner {
 
     @Autowired
     private ThreadService threadService;
-     
+
     @SuppressWarnings("squid:S2629")
     @Override
     public void run(String... args) throws Exception {
@@ -50,7 +50,7 @@ public class JwtCrackerApplication implements CommandLineRunner {
         CommandLineOptions options = new CommandLineOptions();
 
         // parsing command line
-        new JCommander(options, args);
+        new JCommander(options,null, args);
 
         LOG.info("************************************************");
         LOG.info("charset [{}]", new String(options.charSet()));
