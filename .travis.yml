@@ -33,8 +33,7 @@ after_deploy:
 addons:
   sonarcloud:
     organization: hemantsonu20-github
-    token:
-      secure: "$SONAR_TOKEN"
+    token: "$SONAR_TOKEN"
 cache:
   directories:
   - "$HOME/.m2/repository"
