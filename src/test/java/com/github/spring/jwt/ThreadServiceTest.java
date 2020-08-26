@@ -12,7 +12,7 @@
  *   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
- *   
+ *
  */
 package com.github.spring.jwt;
 
@@ -20,6 +20,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.util.ResourceBundle;
 import java.util.concurrent.ExecutionException;
 
 import org.junit.Test;
@@ -48,11 +49,11 @@ public class ThreadServiceTest {
     public void testToken1() throws InterruptedException, ExecutionException {
 
         CommandLineOptions options = new CommandLineOptions();
-        new JCommander(options, "-t", TOKEN_1, "-mt", "5", "-l", "5", "-c", "a-z");
+        new JCommander(options, (ResourceBundle) null, "-t", TOKEN_1, "-mt", "5", "-l", "5", "-c", "a-z");
 
         ThreadService service = new ThreadService();
         assertEquals(SECRET_1, service.crackJwt(options));
-        
+
         System.out.printf("testcase testToken1 cracked [%s]%n", SECRET_1);
     }
 
@@ -60,11 +61,11 @@ public class ThreadServiceTest {
     public void testToken2() throws InterruptedException, ExecutionException {
 
         CommandLineOptions options = new CommandLineOptions();
-        new JCommander(options, "-t", TOKEN_2, "-mt", "5", "-l", "5", "-c", "0-9");
+        new JCommander(options, (ResourceBundle) null, "-t", TOKEN_2, "-mt", "5", "-l", "5", "-c", "0-9");
 
         ThreadService service = new ThreadService();
         assertEquals(SECRET_2, service.crackJwt(options));
-        
+
         System.out.printf("testcase testToken2 cracked [%s]%n", SECRET_2);
     }
 
@@ -72,11 +73,11 @@ public class ThreadServiceTest {
     public void testToken3() throws InterruptedException, ExecutionException {
 
         CommandLineOptions options = new CommandLineOptions();
-        new JCommander(options, "-t", TOKEN_3, "-mt", "5", "-l", "5", "-c", "a-z0-9");
+        new JCommander(options, (ResourceBundle) null, "-t", TOKEN_3, "-mt", "5", "-l", "5", "-c", "a-z0-9");
 
         ThreadService service = new ThreadService();
         assertEquals(SECRET_3, service.crackJwt(options));
-        
+
         System.out.printf("testcase testToken3 cracked [%s]%n", SECRET_3);
     }
 
@@ -84,18 +85,18 @@ public class ThreadServiceTest {
     public void testToken4() throws InterruptedException, ExecutionException {
 
         CommandLineOptions options = new CommandLineOptions();
-        new JCommander(options, "-t", TOKEN_4, "-c", "a-zA-Z0-9");
+        new JCommander(options, (ResourceBundle) null, "-t", TOKEN_4, "-c", "a-zA-Z0-9");
 
         ThreadService service = new ThreadService();
         assertEquals(SECRET_4, service.crackJwt(options));
-        
+
         System.out.printf("testcase testToken4 cracked [%s]%n", SECRET_4);
     }
 
     /**
      * TOKEN_4 secret key is "B4u" but it can't be cracked using charset "0-9", so it
      * will throw ExecutionException
-     * 
+     *
      * @throws InterruptedException
      * @throws ExecutionException
      */
@@ -103,10 +104,10 @@ public class ThreadServiceTest {
     public void testTokenCrackFailure() throws InterruptedException, ExecutionException {
 
         CommandLineOptions options = new CommandLineOptions();
-        new JCommander(options, "-t", TOKEN_4, "-mt", "5", "-l", "3", "-c", "0-9");
+        new JCommander(options, (ResourceBundle) null, "-t", TOKEN_4, "-mt", "5", "-l", "3", "-c", "0-9");
 
         ThreadService service = new ThreadService();
-        
+
         try {
         service.crackJwt(options);
         fail("this should not happen");
@@ -114,7 +115,7 @@ public class ThreadServiceTest {
         catch(ExecutionException e) {
             assertTrue(e.getCause() instanceof IllegalArgumentException);
         }
-        
+
         System.out.println("testcase testTokenCrackFailure passed");
     }
 }
